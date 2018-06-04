@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="libs/jna-4.5.1.jar" sourcepath="C:/Users/JINQU/Downloads/jna-4.5.1.zip"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

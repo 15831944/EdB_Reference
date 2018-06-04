@@ -1,0 +1,23 @@
+package EdBDemo_Java;
+
+import com.sun.jna.Library;
+import com.sun.jna.Native;
+
+public class EdBApi {
+	public interface CLibrary extends Library
+    {
+		int _EdB_Login(String IP, int Port, String Version, String User, String Password, String TXPass, String Yyb);
+		String _EdB_QueryData(String User, int ClientID, int Category);
+		String _EdB_SendOrder(String ClientID, int Fx, String User, String Gddm, String Gpdm, int Quantity, float Price);
+		String _EdB_GetPrice(int ClientID, String Gpdm);
+		String _EdB_CancelOrder(int ClientID, String User, String Bho, int jYs);
+    }
+	
+	private static CLibrary lib = (CLibrary)Native.loadLibrary("EdBApi.dll",CLibrary.class); 
+	
+	public static int EdB_Login(String IP, int Port, String Version, String User, String Password, String TXPass, String Yyb)
+	{
+		return _EdB_Login(IP, Port, Version, User, Password, TXPass, Yyb);
+	}
+	
+}
