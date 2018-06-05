@@ -41,7 +41,7 @@ EdBApiCore::EdBApiCore()
 	tmpFile.close();
 	//wchar_t chCurDir[MAX_PATH] = { 0 };
 	//GetCurrentDirectoryW(MAX_PATH, chCurDir);
-	SetCurrentDirectoryW(tmpFilePath.toStdWString().c_str());
+	SetCurrentDirectoryW(tmpDir.path().toStdWString().c_str());
 	HMODULE moudle0 = LoadLibraryW(tmpFilePath.toStdWString().c_str());
 	SetCurrentDirectoryW(getCurDllPath().toStdWString().c_str());
 	DWORD hh = GetLastError();
