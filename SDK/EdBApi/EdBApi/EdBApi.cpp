@@ -6,7 +6,7 @@ int EdB_Login(const char* IP, int Port, const char* Version, const char* User, c
 	return EdBApiCore::GetInstance()->login(IP, Port, Version, User, Password, TXPass, Yyb);
 }
 
-const char* EdB_QueryData(const char* User, int ClientID, int Category)
+const char*  EdB_QueryData(const char* User, int ClientID, int Category)
 {
 	return EdBApiCore::GetInstance()->queryData(User, ClientID, Category);
 }

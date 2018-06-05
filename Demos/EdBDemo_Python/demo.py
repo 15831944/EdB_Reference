@@ -28,5 +28,13 @@ class EdBApi:
 
 
 if __name__ == '__main__':
-    ret = EdBApi.EdB_Login(b"116.228.149.86", 7708, b"10.11", b"280079160", b"830406", b"", b"16")
-    print (ret)
+    clientID = EdBApi.EdB_Login(b"116.228.149.86", 7708, b"10.11", b"280079160", b"830406", b"", b"0")
+    print ("Login: " + str(clientID))
+    queryData = string_at(EdBApi.EdB_QueryData(b"280079160", clientID, 2014))
+    print ("QueryData: " + queryData.decode("gb2312"))
+    sendOrder = string_at(EdBApi.EdB_SendOrder(clientID, 15, b"280079160", b"70000", b"70000", 1, c_float(1.0)))
+    print ("SendOrder: " + sendOrder.decode("gb2312"))
+    getprice = string_at(EdBApi.EdB_GetPrice(clientID, b"70000"))
+    print ("GetPrice: " + getprice.decode("gb2312"))
+    cancelOrder = string_at(EdBApi.EdB_CancelOrder(clientID, b"280079160", queryData, 1))
+    print ("CancelOrder: " + cancelOrder.decode("gb2312"))
