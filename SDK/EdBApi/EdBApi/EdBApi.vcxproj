@@ -80,7 +80,8 @@
       <OutputFile>.\GeneratedFiles\qrc_%(Filename).cpp</OutputFile>
     </QtRcc>
     <PostBuildEvent>
-      <Command>copy /y Qt5Cored.dll $(SolutionDir)$(Configuration)\</Command>
+      <Command>copy /y Qt5Cored.dll $(SolutionDir)$(Configuration)\Qt5Cored.dll
+copy /y EdBApi.h $(SolutionDir)$(Configuration)\EdBApi.h</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -110,7 +111,8 @@
       <OutputFile>.\GeneratedFiles\qrc_%(Filename).cpp</OutputFile>
     </QtRcc>
     <PostBuildEvent>
-      <Command>copy /y Qt5Core.dll $(SolutionDir)$(Configuration)\</Command>
+      <Command>copy /y Qt5Core.dll $(SolutionDir)$(Configuration)\Qt5Core.dll
+copy /y EdBApi.h $(SolutionDir)$(Configuration)\EdBApi.h</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
