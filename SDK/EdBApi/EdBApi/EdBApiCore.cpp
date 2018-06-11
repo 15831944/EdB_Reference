@@ -135,34 +135,34 @@ bool EdBApiCore::parseLic()
 	return true;
 }
 
-bool EdBApiCore::verifyLogin(const char* ip, const char* user)
+int EdBApiCore::verifyLogin(const char* ip, const char* user)
 {
 	if (!m_isParseLicSuccess)
-		return false;
+		return -100;
 	if (m_licInfo.LimitTime_General)
 	{
 		if (QDateTime::currentDateTime() > m_licInfo.Deadline_General)
-			return false;
+			return -103;
 	}
 	if (m_licInfo.LimitIP_General)
 	{
 		if (!m_licInfo.IPList_General.contains(QString(ip)))
-			return false;
+			return -102;
 	}
 	if (m_licInfo.LimitAccount)
 	{
 		if (!m_licInfo.AccountMap.contains(user))
-			return false;
+			return -101;
 		LicInfo::AcountInfo accountInfo = m_licInfo.AccountMap[user];
 		if (accountInfo.LimitIP)
 		{
 			if (!accountInfo.IPList.contains(ip))
-				return false;
+				return -102;
 		}
 		if (QDateTime::currentDateTime() > accountInfo.Deadline)
-			return false;
+			return -103;
 	}
-	return true;
+	return 0;
 }
 
 
@@ -171,15 +171,12 @@ int EdBApiCore::login(const char* ip, int port, const char* version, const char*
 	if (!m_isParseLicSuccess)
 	{
 		qDebug() << QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£¬ÊÚÈ¨ÎÄ¼þ½âÎö´íÎó");
-		return 0;
+		return -100;
 	}
 
-
-	if (verifyLogin(ip, user) == false)
-	{
-		qDebug() << QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£¬Î´±»ÊÚÈ¨µÇÂ¼");
-		return 0;
-	}
+	int ret = verifyLogin(ip, user);
+	if (ret < 0)
+		return ret;
 
 	if (m_pLoginProc != NULL)
 	{
@@ -189,7 +186,7 @@ int EdBApiCore::login(const char* ip, int port, const char* version, const char*
 	else
 	{
 		qDebug() << QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£¬Èí¼þÄÚ²¿·¢Éú´íÎó");
-		return 0;
+		return -100;
 	}
 }
 

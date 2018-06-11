@@ -43,7 +43,7 @@ private:
 
 	static QString getCurDllPath();
 	bool parseLic();
-	bool verifyLogin(const char* ip, const char* user);
+	int verifyLogin(const char* ip, const char* user);
 
 public:
 	EdBApiCore();
